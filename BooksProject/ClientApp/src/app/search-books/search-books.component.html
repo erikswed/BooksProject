@@ -1,0 +1,49 @@
+<mat-card class="mat-space-bottom">
+  <mat-card-header><mat-card-title>Search for books</mat-card-title></mat-card-header>
+  <form [formGroup]="newContact" class="form-container">
+
+    <mat-form-field>
+      <input type="text" matInput placeholder="Title"  formControlName="title" #box (keyup.enter)="getTitle(box.value)"> <p>{{value}}</p>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="text" matInput placeholder="Author" formControlName="author" #box (keyup.enter)="getAutor(box.value)"> <p>{{value}}</p>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="text" matInput placeholder="Genre" formControlName="genre" #box (keyup.enter)="getGenre(box.value)"> <p>{{value}}</p>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="text" matInput placeholder="Price" formControlName="price" #box (keyup.enter)="getPrice(box.value)"> <p>{{value}}</p>
+    </mat-form-field>
+
+  </form>
+
+</mat-card>
+
+
+
+<mat-card class="mat-space-bottom"
+          *ngFor="let phone of bookItems">
+
+  <mat-card-header >
+    <mat-card-title>{{phone.title | titlecase}}</mat-card-title>
+    <mat-card-subtitle>{{phone.description}}</mat-card-subtitle>
+    <mat-card-subtitle>{{phone.author}}</mat-card-subtitle>
+    <mat-card-subtitle>{{phone.genre}}</mat-card-subtitle>
+    <mat-card-subtitle>{{phone.publish_date}}</mat-card-subtitle>
+    <mat-card-subtitle>{{phone.price}}</mat-card-subtitle>
+
+  </mat-card-header>
+  <!--
+  <mat-card-actions>
+    <a title="Edit Contact" routerLink="/contact/{{phone.id}}">
+      <i class="material-icons">edit</i>
+    </a>
+    <a class="delete" title="Delete Contact" (click)="delete(phone, phone.id)">
+      <i class="material-icons">close</i>
+    </a>
+  </mat-card-actions>
+  </div> -->
+</mat-card>

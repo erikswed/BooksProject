@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BooksProject</name>
+    </assembly>
+    <members>
+        <member name="M:WorkSampleBookSearch.BooksXmlController.GetBookItems">
+            <summary>
+            Retrieve all items from Books.
+            </summary>
+            <returns>Books items List</returns>
+        </member>
+        <member name="M:WorkSampleBookSearch.BooksXmlController.GetBookItem(System.Int64)">
+            <summary>
+            Returns a Book item matching the given id.
+            </summary>
+            <param name="id">Id of item to be retrieved</param>
+            <returns>Book item</returns>
+        </member>
+        <member name="M:WorkSampleBookSearch.BooksXmlController.PostBookItem(WorkSampleBookSearch.Model.BookItem)">
+            <summary>
+            Insert a Book item.
+            </summary>
+            <returns>Inserts new Book item in books.xml and saves the file</returns>
+        </member>
+        <member name="M:WorkSampleBookSearch.BooksXmlController.PostBookItem(System.Int64,WorkSampleBookSearch.Model.BookItem)">
+            <summary>
+            Updates a Book item matching the given id.
+            </summary>
+            <param name="id">Id of item to be retrieved</param>
+            <param name="BookItem">Retrieved Book item</param>
+            <returns>Updates Book item in books.xml and saves the file</returns>
+        </member>
+        <member name="M:WorkSampleBookSearch.BooksXmlController.DeleteBookItem(System.Int64)">
+            <summary>
+            Delete a Book item matching the given id.
+            </summary>
+            <param name="id">Id of item to be retrieved</param>
+            <returns>Deletes item from books.xml and saves the file</returns>
+        </member>
+    </members>
+</doc>

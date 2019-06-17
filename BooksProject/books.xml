@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<catalog>
+   <book id="B1">
+      <author>Kutner, Joe</author>
+      <title>Deploying with JRuby</title>
+      <genre>Computer</genre>
+      <price>33.00</price>
+      <publish_date>2012-08-15</publish_date>
+      <description>Deploying with JRuby is the missing link between enjoying JRuby and using it in the real world to build high-performance, scalable applications.</description>
+   </book>
+   <book id="B2">
+      <author>Ralls, Kim</author>
+      <title>Midnight Rain</title>
+      <genre>Fantasy</genre>
+      <price>5.95</price>
+      <publish_date>2000-12-16</publish_date>
+      <description>A former architect battles corporate zombies, an evil sorceress, and her own childhood to become queen of the world.</description>
+   </book>
+   <book id="B3">
+      <author>Corets, Eva</author>
+      <title>Maeve Ascendant</title>
+      <genre>Fantasy</genre>
+      <price>5.95</price>
+      <publish_date>2000-11-17</publish_date>
+      <description>After the collapse of a nanotechnology society in England, the young survivors lay the foundation for a new society.</description>
+   </book>
+   <book id="B4">
+      <author>Corets, Eva</author>
+      <title>Oberon's Legacy</title>
+      <genre>Fantasy</genre>
+      <price>5.95</price>
+      <publish_date>2001-03-10</publish_date>
+      <description>In post-apocalypse England, the mysterious agent known only as Oberon helps to create a new life for the inhabitants of London. Sequel to Maeve Ascendant.</description>
+   </book>
+   <book id="B5">
+      <author>Tolkien, JRR</author>
+      <title>The Hobbit</title>
+      <genre>Fantasy</genre>
+      <price>11.95</price>
+      <publish_date>1985-09-10</publish_date>
+      <description>If you care for journeys there and back, out of the comfortable Western world, over the edge of the Wild, and home again, and can take an interest in a humble hero blessed with a little wisdom and a little courage and considerable good luck, here is a record of such a journey and such a traveler.</description>
+   </book>
+   <book id="B6">
+      <author>Randall, Cynthia</author>
+      <title>Lover Birds</title>
+      <genre>Romance</genre>
+      <price>4.95</price>
+      <publish_date>2000-09-02</publish_date>
+      <description>When Carla meets Paul at an ornithology conference, tempers fly as feathers get ruffled.</description>
+   </book>
+   <book id="B7">
+      <author>Thurman, Paula</author>
+      <title>Splish Splash</title>
+      <genre>Romance</genre>
+      <price>4.95</price>
+      <publish_date>2000-11-02</publish_date>
+      <description>A deep sea diver finds true love twenty thousand leagues beneath the sea.</description>
+   </book>
+   <book id="B8">
+      <author>Knorr, Stefan</author>
+      <title>Creepy Crawlies</title>
+      <genre>Horror</genre>
+      <price>4.95</price>
+      <publish_date>2000-12-06</publish_date>
+      <description>An anthology of horror stories about roaches, centipedes, scorpions  and other insects.</description>
+   </book>
+   <book id="B9">
+      <author>Kress, Peter</author>
+      <title>Paradox Lost</title>
+      <genre>Science Fiction</genre>
+      <price>6.95</price>
+      <publish_date>2000-11-02</publish_date>
+      <description>After an inadvertant trip through a Heisenberg Uncertainty Device, James Salway discovers the problems of being quantum.</description>
+   </book>
+   <book id="B10">
+      <author>O'Brien, Tim</author>
+      <title>Microsoft .NET: The Programming Bible</title>
+      <genre>Computer</genre>
+      <price>36.95</price>
+      <publish_date>2000-12-09</publish_date>
+      <description>Microsoft's .NET initiative is explored in detail in this deep programmer's reference.</description>
+   </book>
+   <book id="B11">
+      <author>Sydik, Jeremy J</author>
+      <title>Design Accessible Web Sites</title>
+      <genre>Computer</genre>
+      <price>34.95</price>
+      <publish_date>2007-12-01</publish_date>
+      <description>Accessibility has a reputation of being dull, dry, and unfriendly toward graphic design. But there is a better way: well-styled semantic markup that lets you provide the best possible results for all of your users. This book will help you provide images, video, Flash and PDF in an accessible way that looks great to your sighted users, but is still accessible to all users.</description>
+   </book>
+   <book id="B12">
+      <author>Russell, Alex</author>
+      <title>Mastering Dojo</title>
+      <genre>Computer</genre>
+      <price>38.95</price>
+      <publish_date>2008-06-01</publish_date>
+      <description>The last couple of years have seen big changes in server-side web programming. Now it’s the client’s turn; Dojo is the toolkit to make it happen and Mastering Dojo shows you how.</description>
+   </book>
+   <book id="B13">
+      <author>Copeland, David Bryant</author>
+      <title>Build Awesome Command-Line Applications in Ruby</title>
+      <genre>Computer</genre>
+      <price>20.00</price>
+      <publish_date>2012-03-01</publish_date>
+      <description>Speak directly to your system. With its simple commands, flags, and parameters, a well-formed command-line application is the quickest way to automate a backup, a build, or a deployment and simplify your life.</description>
+   </book>
+</catalog>
