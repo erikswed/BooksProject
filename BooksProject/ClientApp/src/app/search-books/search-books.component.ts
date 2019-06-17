@@ -25,10 +25,11 @@ export class SearchBooksComponent {
     private formBuilder: FormBuilder,
     private location: Location
   ) {
-    this.newContact = this.formBuilder.group({
-      name: new FormControl(null, Validators.required),
-      type: new FormControl(null, Validators.required),
-      number: new FormControl(null, Validators.required)
+    this.newContact = new FormGroup({
+      title: new FormControl(''),
+      author: new FormControl(''),
+      genre: new FormControl(''),
+      price: new FormControl(''),
     });
   }
 
@@ -36,10 +37,6 @@ export class SearchBooksComponent {
   //  this.bookService.addContact(this.newContact.value)
   //    .subscribe(() => this.goBack());
   //}
-
-  formControlName = new FormControl('', [
-    Validators.required
-  ]);
 
   getTitle(value: string) {
     this.bookService.getTitles().subscribe(bookItems => this.bookItems = bookItems);

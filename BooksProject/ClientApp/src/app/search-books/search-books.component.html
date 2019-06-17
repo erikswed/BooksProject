@@ -25,15 +25,15 @@
 
 
 <mat-card class="mat-space-bottom"
-          *ngFor="let phone of bookItems">
+          *ngFor="let book of bookItems">
 
   <mat-card-header >
-    <mat-card-title>{{phone.title | titlecase}}</mat-card-title>
-    <mat-card-subtitle>{{phone.description}}</mat-card-subtitle>
-    <mat-card-subtitle>{{phone.author}}</mat-card-subtitle>
-    <mat-card-subtitle>{{phone.genre}}</mat-card-subtitle>
-    <mat-card-subtitle>{{phone.publish_date}}</mat-card-subtitle>
-    <mat-card-subtitle>{{phone.price}}</mat-card-subtitle>
+    <mat-card-title>{{book.title | titlecase}}</mat-card-title>
+    <mat-card-subtitle>{{book.description}}</mat-card-subtitle>
+    <mat-card-subtitle>{{book.author}}</mat-card-subtitle>
+    <mat-card-subtitle>{{book.genre}}</mat-card-subtitle>
+    <mat-card-subtitle>{{book.publish_date}}</mat-card-subtitle>
+    <mat-card-subtitle>{{book.price}}</mat-card-subtitle>
 
   </mat-card-header>
   <!--

@@ -23,12 +23,12 @@ export class BookService {
   }
 
   /** GET book from server. */
-  getPhoneBookItems(): Observable<BookItem[]> {
+  getBookItems(): Observable<BookItem[]> {
     return this.http.get<BookItem[]>(this.BookItemsUrl);
   }
 
   /** GET contact by id. */
-  getPhoneBookItem(id: number): Observable<BookItem> {
+  getBookItem(id: number): Observable<BookItem> {
     const url = `${this.BookItemsUrl}/${id}`;
     return this.http.get<BookItem>(url);
   }
