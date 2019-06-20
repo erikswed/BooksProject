@@ -2,13 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
 
 import { BookItem } from './BookItem';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
 
 @Injectable({ providedIn: 'root' })
 
@@ -18,38 +13,43 @@ export class BookService {
 
   constructor(private http: HttpClient) { }
 
-  getTitles(): Observable<BookItem[]> {
-    return this.http.get<BookItem[]>(this.BookItemsUrl);
-  }
-
-  /** GET book from server. */
+  /** GET all books from server. */
   getBookItems(): Observable<BookItem[]> {
     return this.http.get<BookItem[]>(this.BookItemsUrl);
   }
 
-  /** GET contact by id. */
-  getBookItem(id: number): Observable<BookItem> {
+  /** GET book by id. */
+  getBookItem(id: string): Observable<BookItem[]> {
     const url = `${this.BookItemsUrl}/${id}`;
-    return this.http.get<BookItem>(url);
+    return this.http.get<BookItem[]>(url);
   }
 
-  /** POST: add new contact to server */
-  addContact(contact: BookItem): Observable<BookItem> {
-    return this.http.post<BookItem>(this.BookItemsUrl, contact, httpOptions).pipe(
-      tap(() => catchError(this.handleError<BookItem>('addContact')))
-    );
+  /** GET book by title from server. */
+  getBookByTitle(title: string): Observable<BookItem[]> {
+    const url = `${this.BookItemsUrl}/title/${title}`;
+    return this.http.get<BookItem[]>(url);
   }
 
-  /** PUT: update contact on server */
-  updataContact(id: number, contact: BookItem): Observable<any> {
-    return this.http.put(`${this.BookItemsUrl}/${id}`, contact, httpOptions);
+  /** GET book by author from server. */
+  getBookByAuthor(author: string): Observable<BookItem[]> {
+    const url = `${this.BookItemsUrl}/author/${author}`;
+    return this.http.get<BookItem[]>(url);
   }
 
-  /** DELETE: delete contact from server */
-  deleteContact(id: number): Observable<BookItem> {
-    return this.http.delete<BookItem>(`${this.BookItemsUrl}/${id}`, httpOptions);
+  /** GET book by genre from server. */
+  getBookByGenre(genre: string): Observable<BookItem[]> {
+    const url = `${this.BookItemsUrl}/genre/${genre}`;
+    return this.http.get<BookItem[]>(url);
   }
 
+  /** GET book by price from server. */
+  getBookByPrice(price: string): Observable<BookItem[]> {
+    const url = `${this.BookItemsUrl}/price/${price}`;
+    return this.http.get<BookItem[]>(url);
+
+  }
+
+  /// used for put, add
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
     

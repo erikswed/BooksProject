@@ -10,8 +10,26 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <div class="mat-app-background basic-container">
-    <app-root>loading</app-root>
-  </div>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#config-web-app -->
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyAlrYgTAXyyLjMcb7HGVDdV7UOEtT9fwDM",
+      authDomain: "book-search-api.firebaseapp.com",
+      databaseURL: "https://book-search-api.firebaseio.com",
+      projectId: "book-search-api",
+      storageBucket: "",
+      messagingSenderId: "633997756733",
+      appId: "1:633997756733:web:d1501143de12c43d"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  <app-root>Loading...</app-root>
 </body>
 </html>

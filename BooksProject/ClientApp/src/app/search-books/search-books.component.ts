@@ -7,8 +7,9 @@ import { BookService } from '../Services/book.service'
 import { BookItem } from '../Services/BookItem';
 
 @Component({
-  selector: 'app-add-contact',
+  selector: 'app-search',
   templateUrl: './search-books.component.html',
+  styleUrls: ['./search-books.component.scss']
   
 })
 
@@ -16,42 +17,53 @@ export class SearchBooksComponent {
   public name: string;
   public type: number;
   public number: number;
-  public newContact: FormGroup;
+ 
+  private formBuilder: FormBuilder;
+  private location: Location;
 
   bookItems: BookItem[];
+  public bookGroup = new FormGroup({
+        title: new FormControl(''),
+        author: new FormControl(''),
+        genre: new FormControl(''),
+        price: new FormControl(''),
+      });
+  constructor(private bookService: BookService) {
 
-  constructor(
-    private bookService: BookService,
-    private formBuilder: FormBuilder,
-    private location: Location
-  ) {
-    this.newContact = new FormGroup({
-      title: new FormControl(''),
-      author: new FormControl(''),
-      genre: new FormControl(''),
-      price: new FormControl(''),
-    });
   }
 
-  //addContact(): void {
-  //  this.bookService.addContact(this.newContact.value)
-  //    .subscribe(() => this.goBack());
-  //}
-
-  getTitle(value: string) {
-    this.bookService.getTitles().subscribe(bookItems => this.bookItems = bookItems);
+  /** GET all book from server. */
+  getBookItems() {
+    this.bookService.getBookItems().subscribe(bookItems => this.bookItems = bookItems);
   };
 
-  //getAutor(value: string) {
-  //  this.bookService.getAutors
-  //};
+  /** GET book by id from server. */
+  getBookById(value: string) {
+    this.bookService.getBookItem(value).subscribe(bookItems => this.bookItems = bookItems);
 
-  //getGenre(value: string) {
-  //  this.bookService.getGenres
-  //};
+  };
 
-  //getPrice(value: string) {
-  //  this.bookService.getPrices
-  //};
+  /** GET book by title from server. */
+  getBookByTitle(value: string) {
+    this.bookService.getBookByTitle(value).subscribe(bookItems => this.bookItems = bookItems);
 
+  };
+
+  /** GET book by autor from server. */
+  getBookByAuthor(value: string) {
+    this.bookService.getBookByAuthor(value).subscribe(bookItems => this.bookItems = bookItems);
+
+  };
+
+  /** GET book by genre from server. */
+  getBookByGenre(value: string) {
+    this.bookService.getBookByGenre(value).subscribe(bookItems => this.bookItems = bookItems);
+
+  };
+
+  /** GET book by price from server. */
+  getBookByPrice(value: string) {
+    this.bookService.getBookByPrice(value).subscribe(bookItems => this.bookItems = bookItems);
+
+  };
 }

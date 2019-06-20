@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Xml.Linq;
 using WorkSampleBookSearch.Model;
+using System.Globalization;
 
 namespace WorkSampleBookSearch
 {
@@ -23,7 +24,7 @@ namespace WorkSampleBookSearch
         /// Retrieve all items from Books.
         /// </summary>
         /// <returns>Books items List</returns>
-        // GET: api/Book
+        // GET: api/BooksXml
         [HttpGet]
         public IActionResult GetBookItems()
         {
@@ -47,123 +48,104 @@ namespace WorkSampleBookSearch
         /// </summary>
         /// <param name="id">Id of item to be retrieved</param>
         /// <returns>Book item</returns>
-        // GET: api/Book/5
+        // GET: api/BooksXml/5
         [HttpGet("{id}")]
-        public IActionResult GetBookItem(long id)
+        public IActionResult GetBookItems(string id)
         {
             XDocument doc = _db.GetXmlDb();
-            XElement element = doc.Element("catalog").
-                Elements("id").SingleOrDefault(x => x.Value == id.ToString());
-
-            XElement parent = element.Parent;
-
-            //BookItem bookitem = new BookItem
-            //{
-            //    Id = element.Element("id").Value,
-            //    Author = element.Element("author").Value,
-            //    Title = element.Element("title").Value,
-            //    Genre = element.Element("genre").Value,
-            //    Price = element.Element("price").Value,
-            //    Publish_date = element.Element("publish_date").Value,
-            //    Description = element.Element("description").Value
-            //};
-            return null; // Ok(bookitem);
+            XElement result = doc.Descendants("book").FirstOrDefault(el => el.Attribute("id") != null &&
+                         el.Attribute("id").Value == id);
+            List<BookItem> BookItems = new List<BookItem>();
+            if (result != null)
+            {
+                BookItem Book = new BookItem();
+                Book.Id = (string)result.Attribute("id");
+                Book.Author = (string)result.Element("author");
+                Book.Title = (string)result.Element("title");
+                Book.Genre = (string)result.Element("genre");
+                Book.Price = (decimal)result.Element("price");
+                Book.Publish_date = (DateTime)result.Element("publish_date");
+                Book.Description = (string)result.Element("description");
+                BookItems.Add(Book);
+            }
+            return Ok(BookItems);
         }
 
-        /// <summary>
-        /// Insert a Book item.
-        /// </summary>
-        /// <returns>Inserts new Book item in books.xml and saves the file</returns>
-        //POST: api/Book
-        [HttpPost]
-        public void PostBookItem(BookItem BookItem)
+
+        [HttpGet("title/{title}")]
+        public IActionResult GetBookItemsByTitle(string title)
         {
-            int maxId;
             XDocument doc = _db.GetXmlDb();
-            bool elementExist = doc.Descendants("catalog").Any();
-            if (elementExist)
-            {
-                maxId = doc.Descendants("catalog").Max(x => (int)x.Element("id"));
-            }
-            else
-            {
-                maxId = 0;
-            }
-            /// Id 
-            /// Author
-            /// Title
-            /// Genre
-            /// Price
-            /// Price
-            /// Publish_date
-            /// Description
-            XElement root = new XElement("catalog");
-            root.Add(new XElement("id", maxId + 1));
-            root.Add(new XElement("author", BookItem.Author));
-            root.Add(new XElement("title", BookItem.Title));
-            root.Add(new XElement("genre", BookItem.Genre));
-            root.Add(new XElement("price", BookItem.Price));
-            root.Add(new XElement("publish_date", BookItem.Publish_date));
-            root.Add(new XElement("description", BookItem.Description));
-            doc.Element("catalog").Add(root);
-            doc.Save("books.xml");
+            var books = doc.Root.Elements("book")
+                    .Where(x => x.Element("title").Value.ToLower().Contains(title.ToLower()))
+                    .Select(x => new BookItem
+                    {
+                        Id = x.Attribute("id").Value,
+                        Author = x.Element("author").Value,
+                        Title = x.Element("title").Value,
+                        Genre = x.Element("genre").Value,
+                        Price = decimal.Parse(x.Element("price").Value.Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture),
+                        Publish_date = Convert.ToDateTime(x.Element("publish_date").Value),
+                        Description = x.Element("description").Value
+                    }).ToList();
+            return Ok(books);
         }
 
-        /// <summary>
-        /// Updates a Book item matching the given id.
-        /// </summary>
-        /// <param name="id">Id of item to be retrieved</param>
-        /// <param name="BookItem">Retrieved Book item</param>
-        /// <returns>Updates Book item in books.xml and saves the file</returns>
-        //PUT: api/Book/5
-        [HttpPut("{id}")]
-        public void PostBookItem(long id, BookItem BookItem)
+        [HttpGet("author/{author}")]
+        public IActionResult GetBookItemsByAuthor(string author)
         {
             XDocument doc = _db.GetXmlDb();
-
-            var items = from item in doc.Descendants("catalog")
-                        where item.Element("id").Value == id.ToString()
-                        select item;
-
-            foreach (XElement itemElement in items)
-            {
-                /// Id 
-                /// Author
-                /// Title
-                /// Genre
-                /// Price
-                /// Publish_date
-                /// Description
-                itemElement.SetElementValue("author",BookItem.Author);
-                itemElement.SetElementValue("title", BookItem.Title);
-                itemElement.SetElementValue("genre", BookItem.Genre);
-                itemElement.SetElementValue("price", BookItem.Price);
-                itemElement.SetElementValue("publish_date", BookItem.Publish_date);
-                itemElement.SetElementValue("description", BookItem.Description);
-
-            }
-
-            doc.Save("books.xml");
+            var books = doc.Root.Elements("book")
+                    .Where(x => x.Element("author").Value.ToLower().Contains(author.ToLower()))
+                    .Select(x => new BookItem
+                    {
+                        Id = x.Attribute("id").Value,
+                        Author = x.Element("author").Value,
+                        Title = x.Element("title").Value,
+                        Genre = x.Element("genre").Value,
+                        Price = decimal.Parse(x.Element("price").Value.Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture),
+                        Publish_date = Convert.ToDateTime(x.Element("publish_date").Value),
+                        Description = x.Element("description").Value
+                    }).ToList();
+            return Ok(books);
         }
 
-        /// <summary>
-        /// Delete a Book item matching the given id.
-        /// </summary>
-        /// <param name="id">Id of item to be retrieved</param>
-        /// <returns>Deletes item from books.xml and saves the file</returns>
-        // DELETE: api/Book/5
-        [HttpDelete("{id}")]
-        public void DeleteBookItem(long id)
+        [HttpGet("genre/{genre}")]
+        public IActionResult GetBookItemsByGenre(string genre)
         {
-
             XDocument doc = _db.GetXmlDb();
-            var elementToDelete = from item in doc.Descendants("catalog")
-                                  where item.Element("id").Value == id.ToString()
-                                  select item;
+            var books = doc.Root.Elements("book")
+                    .Where(x => x.Element("genre").Value.ToLower().Contains(genre.ToLower()))
+                    .Select(x => new BookItem
+                    {
+                        Id = x.Attribute("id").Value,
+                        Author = x.Element("author").Value,
+                        Title = x.Element("title").Value,
+                        Genre = x.Element("genre").Value,
+                        Price = decimal.Parse(x.Element("price").Value.Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture),
+                        Publish_date = Convert.ToDateTime(x.Element("publish_date").Value),
+                        Description = x.Element("description").Value
+                    }).ToList();
+            return Ok(books);
+        }
 
-            elementToDelete.Remove();
-
-            doc.Save("books.xml");
+        [HttpGet("price/{price}")]
+        public IActionResult GetBookItemsByPrice(string price)
+        {
+            XDocument doc = _db.GetXmlDb();
+            var books = doc.Root.Elements("book")
+                    .Where(x => x.Element("price").Value.ToLower().Contains(price.ToLower()))
+                    .Select(x => new BookItem
+                    {
+                        Id = x.Attribute("id").Value,
+                        Author = x.Element("author").Value,
+                        Title = x.Element("title").Value,
+                        Genre = x.Element("genre").Value,
+                        Price = decimal.Parse(x.Element("price").Value.Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture),
+                        Publish_date = Convert.ToDateTime(x.Element("publish_date").Value),
+                        Description = x.Element("description").Value
+                    }).ToList();
+            return Ok(books);
         }
     }
 }

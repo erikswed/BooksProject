@@ -1,49 +1,37 @@
-<mat-card class="mat-space-bottom">
+<mat-card class="form-container" >
   <mat-card-header><mat-card-title>Search for books</mat-card-title></mat-card-header>
-  <form [formGroup]="newContact" class="form-container">
+  <form [formGroup]="bookGroup" class="form-container">
 
     <mat-form-field>
-      <input type="text" matInput placeholder="Title"  formControlName="title" #box (keyup.enter)="getTitle(box.value)"> <p>{{value}}</p>
+      <input type="text" matInput placeholder="Title"  formControlName="title" #box (keyup.enter)="getBookByTitle(bookGroup.value.title)"> 
+    </mat-form-field>
+    
+    <mat-form-field>
+      <input type="text" matInput placeholder="Author" formControlName="author" #box (keyup.enter)="getBookByAuthor(bookGroup.value.author)"> 
     </mat-form-field>
 
     <mat-form-field>
-      <input type="text" matInput placeholder="Author" formControlName="author" #box (keyup.enter)="getAutor(box.value)"> <p>{{value}}</p>
+      <input type="text" matInput placeholder="Genre" formControlName="genre" #box (keyup.enter)="getBookByGenre(bookGroup.value.genre)"> 
     </mat-form-field>
 
     <mat-form-field>
-      <input type="text" matInput placeholder="Genre" formControlName="genre" #box (keyup.enter)="getGenre(box.value)"> <p>{{value}}</p>
-    </mat-form-field>
-
-    <mat-form-field>
-      <input type="text" matInput placeholder="Price" formControlName="price" #box (keyup.enter)="getPrice(box.value)"> <p>{{value}}</p>
+      <input type="text" matInput placeholder="Price" formControlName="price" #box (keyup.enter)="getBookByPrice(bookGroup.value.price)"> 
     </mat-form-field>
 
   </form>
 
 </mat-card>
 
-
-
-<mat-card class="mat-space-bottom"
-          *ngFor="let book of bookItems">
+<mat-card *ngFor="let book of bookItems">
 
   <mat-card-header >
     <mat-card-title>{{book.title | titlecase}}</mat-card-title>
-    <mat-card-subtitle>{{book.description}}</mat-card-subtitle>
-    <mat-card-subtitle>{{book.author}}</mat-card-subtitle>
-    <mat-card-subtitle>{{book.genre}}</mat-card-subtitle>
-    <mat-card-subtitle>{{book.publish_date}}</mat-card-subtitle>
-    <mat-card-subtitle>{{book.price}}</mat-card-subtitle>
+    <mat-card-subtitle><b>{{book.description}}</b></mat-card-subtitle>
+    <mat-card-subtitle><b>Author: </b>{{book.author}}</mat-card-subtitle>
+    <mat-card-subtitle><b>Genre: </b>{{book.genre}}</mat-card-subtitle>
+    <mat-card-subtitle><b>Published: </b> {{book.publish_date| date:'dd MMMM yyyy' }}</mat-card-subtitle>
+    <mat-card-subtitle><b>Price: </b>{{book.price}}</mat-card-subtitle>
 
   </mat-card-header>
-  <!--
-  <mat-card-actions>
-    <a title="Edit Contact" routerLink="/contact/{{phone.id}}">
-      <i class="material-icons">edit</i>
-    </a>
-    <a class="delete" title="Delete Contact" (click)="delete(phone, phone.id)">
-      <i class="material-icons">close</i>
-    </a>
-  </mat-card-actions>
-  </div> -->
+
 </mat-card>
