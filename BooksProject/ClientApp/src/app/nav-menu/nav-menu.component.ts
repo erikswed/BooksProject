@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+// import { VERSION } from 'environments/version';
 
 @Component({
   selector: 'app-nav-menu',
@@ -6,4 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./nav-menu.component.css']
 })
 export class NavMenuComponent {
+  //version = VERSION;
 }

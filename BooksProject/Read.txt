@@ -1,0 +1,31 @@
+﻿CREATE RELEASE ASP.NET https://codelabs.developers.google.com/codelabs/cloud-app-engine-aspnetcore/#6
+cd HelloWorldAspNetCore
+dotnet publish -c Release
+Navigate to the the publish folder for the next step.
+cd bin/Release/netcoreapp2.1/publish/
+gcloud app deploy --version v4
+gcloud app deploy --version v5 
+
+CREATE RELEASE ANGULAR https://medium.com/@asanoop24/deploying-angular-6-app-on-google-app-engine-b6259d4c16c2
+Go to your Angular App directory and run the following command to make your app production ready
+DONT FORGET SETTING VERSIONING IN nav-menu.component.html AND package.json
+
+ng build --prod
+ng build --prod --configuration production
+
+This will create a dist folder in your project directory
+Upload the dist folder to GCP bucket
+Now you need to sync your data from your bucket into this directory. Use the following command for that:
+gsutil rsync -r gs://angular-book-app-bucket ./angular-app-gcp
+
+DONT FORGET SETTING VERSIONING IN nav-menu.component.html AND package.json
+VERSIONING 
+gcloud app deploy --version angular-v1 . Testing environment.production() in BooksService
+gcloud app deploy --version angular-v2 . environment.production() in BooksService not working removed it
+gcloud app deploy --version angular-v3 . Angular cant conect to backend fix
+gcloud app deploy --version angular-v3 . Angular cant conect to backend fix
+gcloud app deploy --version angular-v4 . Making so book-service.ts automatically select target url like LocalHost or GCP
+gcloud app deploy --version angular-v4 . Making so book-service.ts automatically select target url like LocalHost or GCP
+
+Check GCA traffic splitting because it gets reset on public new version
+

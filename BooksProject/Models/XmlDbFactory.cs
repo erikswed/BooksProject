@@ -1,20 +1,15 @@
 ﻿using System.Xml.Linq;
 
-namespace WorkSampleBookSearch
+namespace WorkSampleBookSearch.Model
 {
     /// <summary>
     /// Factory that returns a db
     /// </summary>
     public class XmlDbFactory : IXmlDbFactory
     {
-        // DbParserResolver Db = new DbParserResolver();
         public XDocument GetXmlDb()
         {
-            return DbParserResolver.JSON_PARSER.GetDb();
-        }
-
-        public XmlDbFactory()
-        {
+            return DbParserResolver.DB_PARSER.GetDb();
         }
     }
 }

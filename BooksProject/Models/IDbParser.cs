@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace BooksProject.Models
+namespace WorkSampleBookSearch.Models
 {
     public interface IDbParser
     {

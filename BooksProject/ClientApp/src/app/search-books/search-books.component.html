@@ -1,21 +1,25 @@
-<mat-card class="form-container" >
-  <mat-card-header><mat-card-title>Search for books</mat-card-title></mat-card-header>
+<mat-card class="form-container">
+  <mat-card-header>
+    <mat-card-title>Search for books</mat-card-title>
+    <mat-card-subtitle>press enter on search</mat-card-subtitle>
+  </mat-card-header>
+
   <form [formGroup]="bookGroup" class="form-container">
 
     <mat-form-field>
-      <input type="text" matInput placeholder="Title"  formControlName="title" #box (keyup.enter)="getBookByTitle(bookGroup.value.title)"> 
-    </mat-form-field>
-    
-    <mat-form-field>
-      <input type="text" matInput placeholder="Author" formControlName="author" #box (keyup.enter)="getBookByAuthor(bookGroup.value.author)"> 
+      <input type="text" matInput placeholder="Title" formControlName="title" #box (keyup.enter)="getBookByTitle(bookGroup.value.title)">
     </mat-form-field>
 
     <mat-form-field>
-      <input type="text" matInput placeholder="Genre" formControlName="genre" #box (keyup.enter)="getBookByGenre(bookGroup.value.genre)"> 
+      <input type="text" matInput placeholder="Author" formControlName="author" #box (keyup.enter)="getBookByAuthor(bookGroup.value.author)">
     </mat-form-field>
 
     <mat-form-field>
-      <input type="text" matInput placeholder="Price" formControlName="price" #box (keyup.enter)="getBookByPrice(bookGroup.value.price)"> 
+      <input type="text" matInput placeholder="Genre" formControlName="genre" #box (keyup.enter)="getBookByGenre(bookGroup.value.genre)">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="text" matInput placeholder="Price" formControlName="price" #box (keyup.enter)="getBookByPrice(bookGroup.value.price)">
     </mat-form-field>
 
   </form>
@@ -24,7 +28,7 @@
 
 <mat-card *ngFor="let book of bookItems">
 
-  <mat-card-header >
+  <mat-card-header>
     <mat-card-title>{{book.title | titlecase}}</mat-card-title>
     <mat-card-subtitle><b>{{book.description}}</b></mat-card-subtitle>
     <mat-card-subtitle><b>Author: </b>{{book.author}}</mat-card-subtitle>

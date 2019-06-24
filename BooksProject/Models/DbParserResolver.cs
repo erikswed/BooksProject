@@ -1,31 +1,26 @@
-﻿using BooksProject.Models;
+﻿using WorkSampleBookSearch.Models;
 
-namespace WorkSampleBookSearch
+namespace WorkSampleBookSearch.Model
 {
     /// <summary>
-    /// This class can return differen db´s depending on criteria.
+    /// Return different db depending on runtime environment.
     /// </summary>
     internal class DbParserResolver
     {
-
-        public static IDbParser JSON_PARSER;
+        public static IDbParser DB_PARSER;
 
         static DbParserResolver()
         {
-            bool con = true;
-            if (con)
-            {            
-                // Default is the LocalDbParser 
-                JSON_PARSER = new LocalDbParser();
+            DB_PARSER = new GoogleCloudDatastoreParser();
 
-            }
-            else
+            // Localhost database in local runtime environment
+            DB_PARSER = new LocalHostParser();
+            if (DB_PARSER == null)
             {
-                JSON_PARSER = new RemoteDbParser();
+                // Go for Google Cloud Datastore runtime environment
+                DB_PARSER = new GoogleCloudDatastoreParser();
 
             }
-
         }
     }
-    
 }

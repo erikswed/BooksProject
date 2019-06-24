@@ -17,24 +17,24 @@
             <param name="id">Id of item to be retrieved</param>
             <returns>Book item</returns>
         </member>
-        <member name="T:WorkSampleBookSearch.DbParserResolver">
+        <member name="T:WorkSampleBookSearch.Model.DbParserResolver">
             <summary>
-            This class can return differen db´s depending on criteria.
+            Return different db depending on runtime environment.
             </summary>
         </member>
-        <member name="T:WorkSampleBookSearch.XmlDbFactory">
+        <member name="T:WorkSampleBookSearch.Model.XmlDbFactory">
             <summary>
             Factory that returns a db
             </summary>
         </member>
-        <member name="T:BooksProject.Models.LocalDbParser">
+        <member name="T:WorkSampleBookSearch.Models.GoogleCloudDatastoreParser">
             <summary>
-            Returns a Localhost type of db
+            Returns a Google Cloud Datastore type of db
             </summary>
         </member>
-        <member name="T:BooksProject.Models.RemoteDbParser">
+        <member name="T:WorkSampleBookSearch.Models.LocalHostParser">
             <summary>
-            Returns a remote type of db
+            Returns a Localhost type of db
             </summary>
         </member>
     </members>

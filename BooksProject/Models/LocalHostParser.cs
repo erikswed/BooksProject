@@ -4,16 +4,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace BooksProject.Models
+namespace WorkSampleBookSearch.Models
 {
     /// <summary>
     /// Returns a Localhost type of db
     /// </summary>
-    public class LocalDbParser : IDbParser
+    public class LocalHostParser : IDbParser
     {
         public XDocument GetDb()
         {
-            return XDocument.Load("books.xml");
+            try
+            {
+                return XDocument.Load("books.xml");
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
     }
 }

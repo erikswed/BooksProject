@@ -1,19 +1,29 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { Component, isDevMode } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { BookItem } from './BookItem';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 
 export class BookService {
 
-  private BookItemsUrl = 'api/BooksXml';  // URL to web api
+  private BookItemsUrl: string; // = 'https://v0-dot-unique-yew-244216.appspot.com/api/BooksXml';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+
+    // Return different backend path depending on runtime environment. important! use ng build --prod to make this work
+    if (environment.production) {
+      this.BookItemsUrl = 'https://v0-dot-unique-yew-244216.appspot.com/api/BooksXml';
+    } else {
+      this.BookItemsUrl = 'api/BooksXml';
+    }
+  }
 
   /** GET all books from server. */
+
   getBookItems(): Observable<BookItem[]> {
     return this.http.get<BookItem[]>(this.BookItemsUrl);
   }

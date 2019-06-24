@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using System.Xml.Linq;
 using WorkSampleBookSearch.Model;
 using System.Globalization;
+using Microsoft.AspNetCore.Cors;
 
 namespace WorkSampleBookSearch
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class BooksXmlController : ControllerBase
@@ -25,6 +27,7 @@ namespace WorkSampleBookSearch
         /// </summary>
         /// <returns>Books items List</returns>
         // GET: api/BooksXml
+        [EnableCors("AllowSpecificOrigin")]
         [HttpGet]
         public IActionResult GetBookItems()
         {
@@ -49,6 +52,7 @@ namespace WorkSampleBookSearch
         /// <param name="id">Id of item to be retrieved</param>
         /// <returns>Book item</returns>
         // GET: api/BooksXml/5
+        [EnableCors("AllowSpecificOrigin")]
         [HttpGet("{id}")]
         public IActionResult GetBookItems(string id)
         {
@@ -71,7 +75,7 @@ namespace WorkSampleBookSearch
             return Ok(BookItems);
         }
 
-
+        [EnableCors("AllowSpecificOrigin")]
         [HttpGet("title/{title}")]
         public IActionResult GetBookItemsByTitle(string title)
         {
@@ -91,6 +95,7 @@ namespace WorkSampleBookSearch
             return Ok(books);
         }
 
+        [EnableCors("AllowSpecificOrigin")]
         [HttpGet("author/{author}")]
         public IActionResult GetBookItemsByAuthor(string author)
         {
@@ -110,6 +115,7 @@ namespace WorkSampleBookSearch
             return Ok(books);
         }
 
+        [EnableCors("AllowSpecificOrigin")]
         [HttpGet("genre/{genre}")]
         public IActionResult GetBookItemsByGenre(string genre)
         {
@@ -129,6 +135,7 @@ namespace WorkSampleBookSearch
             return Ok(books);
         }
 
+        [EnableCors("AllowSpecificOrigin")]
         [HttpGet("price/{price}")]
         public IActionResult GetBookItemsByPrice(string price)
         {
