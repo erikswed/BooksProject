@@ -61,7 +61,9 @@ mat-card:nth-child(5n) .firstLetter {
   margin-bottom: 10px;
 }
 
-.mat-card-subtitle {
+.red-text {
   font-size: 10px;
-  color: red;
+  color: red !important;
+  text-align: center !important;
 }
+

@@ -19,7 +19,7 @@
         </member>
         <member name="T:WorkSampleBookSearch.Model.DbParserResolver">
             <summary>
-            Return different db depending on runtime environment.
+            The class will host different db backend depending on runtime environment.
             </summary>
         </member>
         <member name="T:WorkSampleBookSearch.Model.XmlDbFactory">

@@ -3,7 +3,7 @@
 namespace WorkSampleBookSearch.Model
 {
     /// <summary>
-    /// Return different db depending on runtime environment.
+    /// The class will host different db backend depending on runtime environment.
     /// </summary>
     internal class DbParserResolver
     {
@@ -13,7 +13,7 @@ namespace WorkSampleBookSearch.Model
         {
             DB_PARSER = new GoogleCloudDatastoreParser();
 
-            // Localhost database in local runtime environment
+            // Go for Localhost runtime environment
             DB_PARSER = new LocalHostParser();
             if (DB_PARSER == null)
             {

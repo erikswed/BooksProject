@@ -1,6 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 import { BookService } from '../Services/book.service'
@@ -18,9 +16,6 @@ export class SearchBooksComponent {
   public type: number;
   public number: number;
  
-  private formBuilder: FormBuilder;
-  private location: Location;
-
   bookItems: BookItem[];
   public bookGroup = new FormGroup({
         title: new FormControl(''),
