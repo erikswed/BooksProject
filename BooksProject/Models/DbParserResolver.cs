@@ -11,11 +11,9 @@ namespace WorkSampleBookSearch.Model
 
         static DbParserResolver()
         {
-            DB_PARSER = new GoogleCloudDatastoreParser();
-
             // Go for Localhost runtime environment
             DB_PARSER = new LocalHostParser();
-            if (DB_PARSER == null)
+            if (DB_PARSER.GetDb() == null)
             {
                 // Go for Google Cloud Datastore runtime environment
                 DB_PARSER = new GoogleCloudDatastoreParser();
